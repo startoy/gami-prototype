@@ -1,0 +1,22 @@
+sceneSetups:
+- path: Assets/Scene/graph.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/graph_2.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/tree_menu.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/tree.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/tree_2.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/sort_insertion.unity
+  isLoaded: 1
+  isActive: 1
+- path: Assets/Scene/sort_selection.unity
+  isLoaded: 0
+  isActive: 0

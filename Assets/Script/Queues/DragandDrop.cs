@@ -1,0 +1,46 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class DragandDrop : MonoBehaviour
+{
+	//Don't forget to attached Collider component to use OnMouse !!
+	Vector3 mousePosition = Vector3.zero;
+	GameObject InstObj;
+	//the instantiate obj must have Rigidbody2d and collider
+	public GameObject objToInstantiate;
+	public QueueControll Qcontroll;
+
+	void OnMouseDown ()
+	{
+		if (Qcontroll._gameControlOver)
+			return;
+		//get mouse position at screen to the game's world -> name mousePosition"
+		mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		InstObj = Instantiate (objToInstantiate, mousePosition, Quaternion.identity) as GameObject;
+	}
+
+	void OnMouseDrag ()
+	{
+		if (Qcontroll._gameControlOver)
+			return;
+		//assign mousePos
+		Vector3 mousePos = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 10f);
+		Vector3 ObjPos = Camera.main.ScreenToWorldPoint (mousePos);
+		InstObj.transform.position = ObjPos;
+	}
+
+	void OnMouseUp()
+	{
+		if (Qcontroll._gameControlOver)
+			return;
+		DestroyObject (InstObj);
+	}
+
+
+	void Update ()
+	{
+
+	
+	}
+		
+}

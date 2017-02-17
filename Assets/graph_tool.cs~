@@ -1,0 +1,93 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class graph_tool : MonoBehaviour
+{
+	
+	private Transform firstNode, secondNode;
+
+
+	// Use this for initialization
+	void Start ()
+	{
+	
+	}
+	
+	// Update is called once per frame
+	void Update ()
+	{
+		checkInput ();
+	}
+
+	void checkInput ()
+	{
+		if (Input.GetMouseButtonDown (0)) {
+			Vector2 ray = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			RaycastHit2D hit = Physics2D.Raycast (ray, Vector2.zero);
+			if (hit) {
+				//make sure the object attached with "COLLIDER"
+				if (!firstNode) {
+					firstNode = hit.transform;
+
+					//beware of the position GLOBAL or LOCAL !!
+//					Debug.Log ("first node" + firstNode.localPosition);
+//					instantiate arrow ขึ้นมา
+//					เอาตำแหน่งสองอันไปใส่ cur กับ anchor ของ arrow
+//					- ตอน awake public arrow รับค่าตำแหน่ง
+//
+				} else if (firstNode != null) {
+					secondNode = hit.transform;
+					//beware of the position GLOBAL or LOCAL !!
+//					Debug.Log ("second node" + secondNode.localPosition);
+					//do some operate here
+					//clear variable to null
+					Debug.Log (firstNode.transform.GetComponent <circle_graph> ().nodeValue);
+					Debug.Log (secondNode.transform.GetComponent <circle_graph> ().nodeValue);
+				}
+
+				// ### END HIT ###
+			} 
+		}
+		// END checkInput
+	}
+
+	//	public bool MakePersonBar (Sprite PersonSprite)
+	//	{
+	//		string name = PersonSprite.name.ToString ();
+	//		//if true
+	//		bool chk = CheckIsTempEqual (name);
+	//		if (chk) {
+	//			Image newPersonBar = Instantiate (_imgPrefab);
+	//			newPersonBar.transform.SetParent(this.transform, true);
+	//			newPersonBar.sprite = PersonSprite;
+	//
+	//			//ใช้ localposition เพราะอ้างอิงจากตัว parent
+	//			newPersonBar.GetComponent<RectTransform> ().localPosition = new Vector3 (xpos, -20f, 0f);
+	//			xpos += 70f;
+	//		}
+	//		//		Debug.Log ("STK : " + name);
+	//		return chk;
+	//	}
+
+	//	public bool CheckIsTempEqual (string name)
+	//	{
+	//		UserAnswerInorder.Add (name);
+	//		//		Debug.Log ("Adding " + name);
+	//		string[] userAnswer = UserAnswerInorder.ToArray ();
+	//		string[] Answer = busM.answer;
+	//		int i = ListCount;
+	//		bool res = false;
+	//		if (userAnswer [i] == Answer [i]) {
+	//			ScoreTemp += 10;
+	//			ListCount++;
+	//			res = true;
+	//		} else {
+	//			UserAnswerInorder.Remove (name);
+	//			//			Debug.Log ("Losing " + name);
+	//			heartObj.LosingHeart ();
+	//		}
+	//		return res;
+	//	}
+
+	// END #CLASS
+}
