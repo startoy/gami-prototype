@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class insertion_ui : MonoBehaviour {
+public class bubble_ui : MonoBehaviour {
 
 	// controller UI
 	// put from Canvas

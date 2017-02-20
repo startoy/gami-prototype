@@ -95,6 +95,8 @@
      <Compile Include="Assets\TreeChkAnswer.cs" />
      <Compile Include="Assets\TreeControlUI.cs" />
      <Compile Include="Assets\TreeNodeanswer.cs" />
+     <Compile Include="Assets\bubble_controller.cs" />
+     <Compile Include="Assets\bubble_ui.cs" />
      <Compile Include="Assets\insertion_controller.cs" />
      <Compile Include="Assets\insertion_ui.cs" />
      <Compile Include="Assets\tray_script.cs" />

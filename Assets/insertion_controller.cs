@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class insertion_controller : MonoBehaviour
 {
-
+	public int eachGiveScore;
+	public insertion_ui thisUI;
 	public Transform secondObj = null, firstObj = null;
 	public static int curInsertionSortedVal;
 
@@ -12,23 +14,45 @@ public class insertion_controller : MonoBehaviour
 	bool isMoveRightDone = false;
 
 	//var for do moving motions
-	private Vector3 Fnode, Snode,curOr;
+	private Vector3 Snode, curOr;
 	public float stepSpd = 2f;
 	public GameObject[] oranges;
+	public List<GameObject> orangesSorted;
+	//	List<int> testList;
 	// Use this for initialization
 	void Start ()
 	{
-	
+		List<GameObject> orangesSorted = new List<GameObject> ();
+//		List<int> testList = new List<int> ();
+//		testList.Add (1);
+//		testList.Add (2);
+//		testList.Add (5);
+//		testList.Add (10);
+//		foreach (int arr in testList) {
+//			Debug.Log (arr);
+//		}
+
 	}
 
 	void Awake ()
 	{
+		//initial for game
 		curInsertionSortedVal = 2;
+		orangesSorted.Add (oranges [7]);
+		thisUI.incScore (eachGiveScore);
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		if(curInsertionSortedVal >= 9)
+		{
+			if (!isMoving&&!isObjMove) {
+				thisUI.isGameUIOver = true;
+				return;
+			}
+		}
+
 		if (isMoving) {
 			if (firstObj != null && secondObj != null) {
 				if (isObjMove) {
@@ -51,17 +75,16 @@ public class insertion_controller : MonoBehaviour
 			if (hit) {
 				if (!firstObj) {
 					firstObj = hit.transform;
-					Fnode = firstObj.transform.position;
-					if(firstObj.GetComponent <orangeValue> ().swapNum!=curInsertionSortedVal)
-					{
+//					Fnode = firstObj.transform.position;
+					//บังคับให้กดได้เฉพาะตัวปัจจุบันที่จะ sort
+					if (firstObj.GetComponent <orangeValue> ().swapNum != curInsertionSortedVal) {
 						firstObj = null;
 						return;
 					}
 					if (firstObj.tag == "unsort") {
 						tempValue = firstObj.GetComponent <orangeValue> ().value;
 						Debug.Log ("firstObj = " + tempValue);
-					}
-					else{
+					} else {
 						firstObj = null;
 						return;
 					}
@@ -84,41 +107,88 @@ public class insertion_controller : MonoBehaviour
 						//foreach orange where tag == sorted / == secondObj --> value
 						// firstTemp < value && firsttemp > valie[i-1]
 						//DO IF ELSE SWAP BACK/No SWAP
-						prevValue = 0;
-						bool isCorrect=false;
-						foreach(GameObject arr in oranges)
-						{
-							if(arr.transform.tag=="sorted")
-							{
-								if(arr.transform==secondObj)
-								{
-									if(tempValue < swapValue)
-									{
-										if (!isCorrect) {
-											firstObj.transform.tag = "sorted";
-											curInsertionSortedVal++;
-											isMoving = true;
-											isObjMove = true;
-											isCorrect = true;
-										}
-									}else{
-										//losing heart
-									}
-								}
-								while(isMoving){
+
+						//หาค่าแรกที่พบว่ามากกว่าตัวแรกที่เราคลิก แสดงว่าจะแทนที่ตัวนั้น
+						prevValue = findFirstMax ();
+						bool isCorrect = false;
+						if (prevValue == swapValue) { //แสดงว่า ถ้าตรวจสอบแล้วกดที่ตัวเดียวกัน จะให้ทำการเลื่อนไปหา
+							if (!isCorrect) {
+								firstObj.transform.tag = "sorted";
+								curInsertionSortedVal++;
+								thisUI.incScore (eachGiveScore);
+								isMoving = true;
+								isObjMove = true;
+								isCorrect = true; //lock
+							}
+						} else { 
+							//แต่ถ้ามันค่าไม่เท่ากัน !! แสดงว่าเรากดผิด ไม่ต้องสลับ
+							//losing heart
+							//set null
+							thisUI.theHeart.LosingHeart ();
+							firstObj = null;
+							secondObj = null;
+						}
+
+						if (isMoving) {
+							//ให้มันเลื่อนไปทางขวา เฉพาะตัวที่มันมากกว่า tempValue
+							foreach (GameObject arr in orangesSorted) {
+								if (arr.transform.tag == "sorted" && arr.GetComponent <orangeValue> ().value>tempValue) {
 									curOr = arr.transform.position;
-									moveToRight (arr);
+									arr.GetComponent <orangeValue> ().curPos = curOr;
+									arr.GetComponent <orangeValue> ().ismoveToRight = true;
 								}
 							}
 						}
 
+					} else if (firstObj == secondObj) { //ถ้าไม่ได้ไปกดตัวที่จัดเรียงแล้ว แต่มากดตัวเดิม แสดงว่าจะทำให้ตัวนี้จัดเรียง
+						//หาค่าที่มากที่สุดตัวแรกที่เจอ เทียบกับตัวแรกที่เรากด
+						prevValue = findFirstMax ();
+						bool isCorrect = false;
+						if (prevValue == 0) { //แสดงว่าไม่เกมออบเจ็คพบตัวไหนทมีี่ค่ามากกว่า tempValue
+							if (!isCorrect) {
+								firstObj.transform.tag = "sorted";
+								orangesSorted.Add (firstObj.gameObject);
+								orangesSorted.Sort ((a,b) => (a.GetComponent <orangeValue>().value.CompareTo (b.GetComponent <orangeValue>().value)));
+								curInsertionSortedVal++;
+								thisUI.incScore (eachGiveScore);
+								firstObj = null;
+								secondObj = null;
+								isCorrect = true; //lock
+							}
+						} else { 
+							//แต่ถ้ามันมีค่า มากกว่า 0 แสดงว่ามันมีตัวที่มากกว่า tempValue อยู่ --> เราผิด !!
+							//losing heart
+							//set null
+							thisUI.theHeart.LosingHeart ();
+							firstObj = null;
+							secondObj = null;
+							Debug.Log ("is wrong , Click 2 time because is more than all");
+						}
 
-					} else if (firstObj == secondObj) {
-						//DO NEXT SORT TRAY
 					}
 				}
 			}
 		}
+	}
+
+	int findFirstMax ()
+	{
+		int res = 0;
+		foreach (GameObject arr in orangesSorted) {
+			if (arr.transform.tag == "sorted") {
+				res = arr.GetComponent <orangeValue> ().value;
+				if (res > tempValue) {
+					Debug.Log ("FOUND " + res + " > " + tempValue);
+					break;
+					//FOUND!! break --> exit the loop
+				} else {
+					Debug.Log ("NOT FOUND res = 0 ");
+					res = 0;
+				}
+			}
+		}
+
+		return res;
 	}
 
 	void moveToObjReplace ()
@@ -129,31 +199,19 @@ public class insertion_controller : MonoBehaviour
 		//		Vector3 fTarget = new Vector3 (Fnode.x, Fnode.y, Fnode.z);
 		Vector3 sTarget = new Vector3 (Snode.x, Snode.y, firstObj.transform.position.z);
 
-		firstObj.transform.position = Vector3.MoveTowards (firstObj.transform.position, sTarget, step * 2f);
+		firstObj.transform.position = Vector3.MoveTowards (firstObj.transform.position, sTarget, step * 3f);
 
-		if (firstObj.transform.position == sTarget && isMoveRightDone) {
+		if (firstObj.transform.position == sTarget) {
+			
+			orangesSorted.Add (firstObj.gameObject);
+			orangesSorted.Sort ((a,b) => (a.GetComponent <orangeValue>().value.CompareTo (b.GetComponent <orangeValue>().value)));
+
 			isMoving = false;
 			isObjMove = false;
-			isMoveRightDone = false;
 			firstObj = null;
 			secondObj = null;
 		}
 	}
-
-	void moveToRight(GameObject objToMove)
-	{
-		//second switch 2 object
-		float step = stepSpd * Time.deltaTime;
-		//get from previous move
-		//		Vector3 fTarget = new Vector3 (Fnode.x, Fnode.y, Fnode.z);
-		Vector3 sTarget = new Vector3 (curOr.x + 2.2f, curOr.y, curOr.z);
-
-		objToMove.transform.position = Vector3.MoveTowards (objToMove.transform.position, sTarget, step * 10);
-		Debug.Log ("Hey z");
-		if (objToMove.transform.position == sTarget) {
-			isMoveRightDone = true;
-			Debug.Log ("isMoveRightDone TRUE");
-		}
-	}
+		
 
 }

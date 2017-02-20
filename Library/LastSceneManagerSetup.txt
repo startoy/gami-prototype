@@ -15,8 +15,11 @@ sceneSetups:
   isLoaded: 0
   isActive: 0
 - path: Assets/Scene/sort_insertion.unity
-  isLoaded: 1
-  isActive: 1
+  isLoaded: 0
+  isActive: 0
 - path: Assets/Scene/sort_selection.unity
   isLoaded: 0
   isActive: 0
+- path: Assets/Scene/sort_bubble.unity
+  isLoaded: 1
+  isActive: 1
