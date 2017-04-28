@@ -6,10 +6,10 @@ public class MouseoverTray : MonoBehaviour
 	public swapObject theSwap;
 	public bool isSorted;
 	public int _realValue;
-	public static int _curSortedValue;
+	private int _curSortedValue;
 	//	public int score=50;
 
-	int _tempValue, _score = 50;
+	int _tempValue;
 	// Use this for initialization
 	void Start ()
 	{
@@ -18,13 +18,14 @@ public class MouseoverTray : MonoBehaviour
 
 	void Awake ()
 	{
-		_curSortedValue = 1;
+		
 		isSorted = false;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		this._curSortedValue = theSwap._curSortedValue;
 		if (!isSorted) {
 			if (_tempValue == _realValue && _realValue == _curSortedValue) {
 				increaseSort ();
@@ -35,7 +36,7 @@ public class MouseoverTray : MonoBehaviour
 			this.GetComponent<SpriteRenderer> ().color = new Color32 (40, 255, 0, 255);
 
 		}
-		Debug.Log ("Current sorted value = " + _curSortedValue);
+//		Debug.Log ("Current sorted value = " + _curSortedValue);
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
@@ -106,8 +107,8 @@ public class MouseoverTray : MonoBehaviour
 	void increaseSort ()
 	{
 		isSorted = true;
-		_curSortedValue += 1;
-		increaseScore (_score);
+		theSwap._curSortedValue += 1;
+		theSwap.increaseScore ();
 //		Control_sort_selection._selectionCurState=1;
 //		theSwap.firstObj = null;
 //		theSwap.secondObj = null;
@@ -125,8 +126,8 @@ public class MouseoverTray : MonoBehaviour
 		}
 	}
 
-	void increaseScore (int score)
-	{
-		Control_sort_selection._selectionLevelCurScore += score;
-	}
+//	void increaseScore (int score)
+//	{
+//		Control_sort_selection._selectionLevelCurScore += score;
+//	}
 }

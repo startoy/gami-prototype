@@ -9,7 +9,7 @@ public class swapObject : MonoBehaviour
 	public MakeHeart theHeart;
 
 	//include to check if game is over or not -> disabling to click/swap object
-	public Control_sort_selection gameController;
+	public bubble_ui gameController;
 	public float stepSpd = 1f;
 	public Transform secondTempObj = null, secondObj = null;
 	public Transform firstTempObj = null, firstObj = null;
@@ -21,6 +21,10 @@ public class swapObject : MonoBehaviour
 	int firstValue, switchValue, tempValue;
 	bool isOnMoving, isSwitch, moveAbove, moveLR, moveDown;
 	GameObject firstParticleObj, secondParticleObj;
+
+	public int _curSortedValue=1;
+	public int _score;
+	public GameObject[] Trays;
 	//firstObj -> store the hit (second click)
 	//secondObj
 	//vector3 tempObj -> store Vector3 of hit position
@@ -40,15 +44,23 @@ public class swapObject : MonoBehaviour
 		isOnMoving = false;
 	}
 
-
+	public void increaseScore()
+	{
+		//bubble ui
+		gameController.incScore (_score);
+	}
 
 	// Update is called once per frame
 	void Update ()
 	{	
 
-		if (gameController._gameControlOver) {
+		if (gameController.isGameUIOver&&!isOnMoving) {
 			//return if gameover = true
 			return;
+		}
+
+		if(_curSortedValue > Trays.Length){
+			gameController.isGameUIOver = true;
 		}
 
 
@@ -146,14 +158,14 @@ public class swapObject : MonoBehaviour
 						}
 
 //						Debug.Log (switchValue + "switch = tempValue " + tempValue);
-						if (switchValue == tempValue && MouseoverTray._curSortedValue == firstValue) {
+						if (switchValue == tempValue && this._curSortedValue == firstValue) {
 							firstParticleObj.gameObject.SetActive (false);
 							secondParticleObj.gameObject.SetActive (false);
 //							DoSwitch ();
 							isSwitch = true;
 //							Debug.Log ("isSwitch = TRUEEEEEEEEEEEEE");
 						} else {
-							Debug.Log ("IS WRONG");
+//							Debug.Log ("IS WRONG");
 							firstObj = null;
 							secondObj = null;
 							firstTempObj = null;
@@ -220,7 +232,7 @@ public class swapObject : MonoBehaviour
 //			Debug.Log ("moveLR Success!");
 			moveLR = true;
 		}
-		Debug.Log ("moveLR =" + moveLR);
+//		Debug.Log ("moveLR =" + moveLR);
 
 	}
 

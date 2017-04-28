@@ -1,0 +1,28 @@
+fileFormatVersion: 2
+guid: 9b689bf1a6bc378498fcc480408d3c42
+timeCreated: 1492365462
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - theTimer: {instanceID: 0}
+  - theHeart: {instanceID: 0}
+  - thecanvasGameOver: {instanceID: 0}
+  - theMedalSTD: {instanceID: 0}
+  - theMedal: {instanceID: 0}
+  - addScore: {instanceID: 0}
+  - audio_newHighScore: {fileID: 8300000, guid: 0478e7e24b777a54eb994224c5d0c488,
+      type: 3}
+  - audio_gameOver: {fileID: 8300000, guid: 230aff4da7f982a468dcc7773c5ac0ff, type: 3}
+  - audio_youWin: {fileID: 8300000, guid: b36555720fc9b71488ff28a0cb867665, type: 3}
+  - audioEnding: {fileID: 8300000, guid: b36555720fc9b71488ff28a0cb867665, type: 3}
+  - endingGameImageSprite: {instanceID: 0}
+  - _endingGameSprite: {fileID: 21300000, guid: 8ff6ec3225fa5f6479fa0363f1291ed0,
+      type: 3}
+  - _spriteGameOver: {fileID: 21300000, guid: 30660a3b07929a14fbcda7cf4505135a, type: 3}
+  - _spriteYouWin: {fileID: 21300000, guid: 8ff6ec3225fa5f6479fa0363f1291ed0, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

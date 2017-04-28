@@ -66,14 +66,12 @@ public class bubble_controller : MonoBehaviour
 				//
 				//  สลับที่ซ้าย ขวา     curInt จะเลื่อนไปขวา // curInt+1 จะเลื่อนไปซ้าย 
 				//  
-//				Vector3 cPos1 = new Vector3 (); //ตำแหน่งตัวซ้าย
-//				Vector3 cPos2 = new Vector3 (); //ตำแหน่งตัวขวา
 				temp = oranges [curInt + 1]; //สลับที่
 				oranges [curInt + 1] = oranges [curInt];
 				oranges [curInt] = temp;
 				// START do move
 				// do move to LEFT
-				Vector3 curOr = oranges [curInt +1].transform.position;
+				Vector3 curOr = oranges [curInt + 1].transform.position;
 				oranges [curInt + 1].GetComponent <orangeValue> ().curPos = curOr;
 				oranges [curInt + 1].GetComponent <orangeValue> ().ismoveToRight = true;
 				// do move to RIGHT
@@ -82,29 +80,25 @@ public class bubble_controller : MonoBehaviour
 				oranges [curInt].GetComponent <orangeValue> ().ismoveToLeft = true;
 				// END do move
 				Debug.Log ("now New f=" + oranges [curInt].GetComponent <orangeValue> ().value + " s=" + oranges [curInt + 1].GetComponent <orangeValue> ().value);
-
 				curInt++;
 				locke = false;
 			} else {
-				//ถ้าเกิดว่าคลิกจริงๆ แต่แล้วมันไม่เท่ากัน แสดงว่าผ่านไป
+				//ถ้าเกิดว่าคลิกจริงๆ แต่มันไม่ต้องสลับ แสดงว่าผิด
 				//ดังนั้น ต้องเอาอันนี้ออก แล้ว
 				//set Losing Heart  ไม่ค้องบวก
 				thisUI.theHeart.LosingHeart ();
-				Debug.Log ("LOCKE ELSE");
 			}
 		} else if (locke2 && !locke) {
 			if (oranges [curInt].GetComponent <orangeValue> ().value < oranges [curInt + 1].GetComponent <orangeValue> ().value) {
-				// --> ตัวขวามากกว่า ไม่ต้องสลับ 
-				//แสดงว่า ผู้ใช้กดถูก
+				// --> ตัวขวามากกว่า ไม่ต้องสลับ ผู้ใช้กดตัวขวา
+				//แสดงว่า ผู้ใช้กดถูกต้อง
 				oranges [curInt].transform.tag = "unsort";
 				oranges [curInt + 1].transform.tag = "unsort";
 				curInt++;
 			} else {
-				//ถ้าเกิดว่าคลิกจริงๆ แต่แล้วมันไม่เท่ากัน แสดงว่าผ่านไป
-				//ดังนั้น ต้องเอาอันนี้ออก แล้ว
+				//ไม่ต้องสลับ แสดงว่ากดผิด
 				//set Losing Heart  ไม่ค้องบวก
 				thisUI.theHeart.LosingHeart ();
-				Debug.Log ("LOCKE2 ELSE");
 			}
 		}
 	}
@@ -141,7 +135,7 @@ public class bubble_controller : MonoBehaviour
 		return res;
 	}
 
-	void sortOranges ()
+	/*void sortOranges ()
 	{
 		GameObject temp;
 		bool flag = true;
@@ -150,27 +144,15 @@ public class bubble_controller : MonoBehaviour
 			flag = false;
 			for (int sort = 0; sort < oranges.Length - 1; sort++) {
 				Debug.Log ("Consider -- " + oranges [sort].GetComponent <orangeValue> ().value + " <==> " + oranges [sort + 1].GetComponent <orangeValue> ().value);
-				if (clickDetech () && !flag) {
-					
-					//ถ้าตัวแรกมากกว่าตัวที่สอง -->ให้สลับ
-					if (oranges [sort].GetComponent <orangeValue> ().value > oranges [sort + 1].GetComponent <orangeValue> ().value) {
-						Debug.Log (oranges [sort].GetComponent <orangeValue> ().value + " <==> " + oranges [sort + 1].GetComponent <orangeValue> ().value);
-						temp = oranges [sort + 1];
-
-//						oranges [sort + 1].transform.position = oranges [sort].transform.position;
-						oranges [sort + 1] = oranges [sort];
-
-						oranges [sort] = temp;
-//						oranges [sort].transform.position = temp.transform.position;
-
-
-						flag = true;
-					} 
-				} else {
-					return;
-				}
-			}
+				//ถ้าตัวแรกมากกว่าตัวที่สอง -->ให้สลับ
+				if (oranges [sort].GetComponent <orangeValue> ().value > oranges [sort + 1].GetComponent <orangeValue> ().value) {
+					Debug.Log (oranges [sort].GetComponent <orangeValue> ().value + " <==> " + oranges [sort + 1].GetComponent <orangeValue> ().value);
+					temp = oranges [sort + 1];
+					oranges [sort + 1] = oranges [sort];
+					oranges [sort] = temp;
+					flag = true;
+				} 
+			} 
 		}
-
-	}
+	}*/
 }

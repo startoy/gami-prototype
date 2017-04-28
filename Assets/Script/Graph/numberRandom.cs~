@@ -20,7 +20,6 @@ public class numberRandom : MonoBehaviour
 		if (maxNumber > 0) {
 			GenerateRandomList ();
 		}
-
 	}
 
 	// Update is called once per frame
@@ -28,12 +27,10 @@ public class numberRandom : MonoBehaviour
 	{
 
 	}
-		
 
 	void GenerateRandomList(){
 		for(int i = 1; i <= maxNumber; i++)
 		{
-			//get size = 4 
 			uniqueNumbers.Add(i);
 		}
 
@@ -48,8 +45,5 @@ public class numberRandom : MonoBehaviour
 //			Debug.Log (txt [i - 1].text);
 
 		}
-
-
 	}
-
 }
