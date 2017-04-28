@@ -1,11 +1,62 @@
 sceneSetups:
-- path: Assets/Scene/graph.unity
+- path: Assets/Scene/sort_heap1.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/sort_heap.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/sort_quick.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/sort_quick1.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/sort_shell.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/sort_shell1.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/sort_bubble1.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/sort_bubble.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/sort_insertion1.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/sort_insertion.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/sort_selection1.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/sort_selection.unity
   isLoaded: 0
   isActive: 0
 - path: Assets/Scene/graph_2.unity
   isLoaded: 0
   isActive: 0
-- path: Assets/Scene/tree_menu.unity
+- path: Assets/Scene/graph.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/postorder_2.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/postorder.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/inorder_2.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/inorder.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/preorder_2.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/preorder.unity
   isLoaded: 0
   isActive: 0
 - path: Assets/Scene/tree.unity
@@ -14,9 +65,18 @@ sceneSetups:
 - path: Assets/Scene/tree_2.unity
   isLoaded: 0
   isActive: 0
-- path: Assets/Scene/sort_insertion.unity
+- path: Assets/Scene/queues.unity
   isLoaded: 1
   isActive: 1
-- path: Assets/Scene/sort_selection.unity
+- path: Assets/Scene/queues2.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/stack.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/stack2.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/main.unity
   isLoaded: 0
   isActive: 0
