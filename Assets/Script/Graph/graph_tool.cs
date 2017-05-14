@@ -192,7 +192,7 @@ public class graph_tool : MonoBehaviour
 				if (!firstNode) {
 					firstNode = hit.transform;
 					int arrowIndex = firstNode.GetComponent <arrow_script> ().arrowNO;
-					Debug.Log ("delete arrowIndex = " + arrowIndex);
+//					Debug.Log ("delete arrowIndex = " + arrowIndex);
 					firstNode.GetComponent <arrow_script> ().destroyArrow ();
 					firstNode = null;
 					firstNodeStore.Remove (arrowIndex);
@@ -204,21 +204,21 @@ public class graph_tool : MonoBehaviour
 		// END deleteArrowInput
 	}
 
-	void loopListAnswer ()
-	{
-		if (firstNodeStore != null && secondNodeStore != null) {
-			for (int i = 0; i < firstNodeStore.Count; i++) {
-				foreach (KeyValuePair<int,int> fns in firstNodeStore) {
-					foreach (KeyValuePair<int,int> sns in secondNodeStore) {
-						if (fns.Key == sns.Key)
-							Debug.Log ("hi" + fns.Value + "," + sns.Value);
-
-					}
-				}
-
-			}
-		}
-	}
+//	void loopListAnswer ()
+//	{
+//		if (firstNodeStore != null && secondNodeStore != null) {
+//			for (int i = 0; i < firstNodeStore.Count; i++) {
+//				foreach (KeyValuePair<int,int> fns in firstNodeStore) {
+//					foreach (KeyValuePair<int,int> sns in secondNodeStore) {
+//						if (fns.Key == sns.Key)
+////							Debug.Log ("hi" + fns.Value + "," + sns.Value);
+//
+//					}
+//				}
+//
+//			}
+//		}
+//	}
 
 
 

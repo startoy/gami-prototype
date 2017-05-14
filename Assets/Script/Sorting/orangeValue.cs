@@ -16,6 +16,9 @@ public class orangeValue : MonoBehaviour
 	public Vector3 nextPos = Vector3.zero;
 	public bool ChainMove,finishChain;
 	bool upFinish = false, RightFinish = false, DownFinish = false;
+
+
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -42,10 +45,15 @@ public class orangeValue : MonoBehaviour
 			//finishChain = false;
 			fchain(nextPos);
 		}
+
+
+
+
 	}
 
 	void Awake ()
 	{
+
 		ismoveToRight = false;
 		ismoveToLeft = false;
 		ismoveLR = false;
@@ -59,6 +67,9 @@ public class orangeValue : MonoBehaviour
 //	void setToundetec(){
 //		this.GetComponent <R>().ena;
 //	}
+
+
+
 
 	void fchain(Vector3 Pos)
 	{
@@ -109,10 +120,10 @@ public class orangeValue : MonoBehaviour
 	}
 	*
 	*/
-	public int OnMouseDown(){
-		// this object was clicked - do something
-		return 55555;
-	}   
+//	public int OnMouseDown(){
+//		// this object was clicked - do something
+//		return 55555;
+//	}   
 
 
 	public void moveLR (Vector3 curPos)

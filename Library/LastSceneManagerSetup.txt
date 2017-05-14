@@ -29,10 +29,13 @@ sceneSetups:
 - path: Assets/Scene/sort_insertion.unity
   isLoaded: 0
   isActive: 0
+- path: Assets/Scene/sort_selection.unity
+  isLoaded: 0
+  isActive: 0
 - path: Assets/Scene/sort_selection1.unity
   isLoaded: 0
   isActive: 0
-- path: Assets/Scene/sort_selection.unity
+- path: Assets/Scene/movie/graph_video.unity
   isLoaded: 0
   isActive: 0
 - path: Assets/Scene/graph_2.unity
@@ -66,8 +69,8 @@ sceneSetups:
   isLoaded: 0
   isActive: 0
 - path: Assets/Scene/queues.unity
-  isLoaded: 1
-  isActive: 1
+  isLoaded: 0
+  isActive: 0
 - path: Assets/Scene/queues2.unity
   isLoaded: 0
   isActive: 0
@@ -77,6 +80,15 @@ sceneSetups:
 - path: Assets/Scene/stack2.unity
   isLoaded: 0
   isActive: 0
-- path: Assets/Scene/main.unity
+- path: Assets/Scene/linearlist_menu.unity
   isLoaded: 0
   isActive: 0
+- path: Assets/Scene/sort_menu.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/tree_menu.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/main.unity
+  isLoaded: 1
+  isActive: 1

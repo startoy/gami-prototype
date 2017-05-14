@@ -39,11 +39,17 @@ public class SortSelectionTutorial : MonoBehaviour
 			TextObj.text = tLine [2];
 			tap [1].SetActive (false);
 			tap [2].SetActive (true);
+			if (Input.GetMouseButtonDown (0)) {
+				print ("counter=4");
+				counter = 4;
+			}
 		} else if (counter == 4) {
+			print ("in 4");
 			TextObj.text = "";
 			foreach (GameObject arr in tap) {
 				arr.SetActive (false);
 			}
+			counter = 5;
 		}
 
 	}

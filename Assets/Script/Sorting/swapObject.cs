@@ -25,6 +25,7 @@ public class swapObject : MonoBehaviour
 	public int _curSortedValue=1;
 	public int _score;
 	public GameObject[] Trays;
+	public GameObject[] oranges;
 	//firstObj -> store the hit (second click)
 	//secondObj
 	//vector3 tempObj -> store Vector3 of hit position
@@ -63,6 +64,11 @@ public class swapObject : MonoBehaviour
 			gameController.isGameUIOver = true;
 		}
 
+		if(oranges[_curSortedValue-1].GetComponent<orangeValue> ().switchValue == oranges[_curSortedValue-1].GetComponent<orangeValue> ().value && _curSortedValue == oranges[_curSortedValue-1].GetComponent<orangeValue> ().value){
+			oranges [_curSortedValue-1].tag = "sorted";
+			_curSortedValue++;
+		}
+
 
 
 		if (isSwitch) {
@@ -91,7 +97,7 @@ public class swapObject : MonoBehaviour
 			Vector2 ray = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			RaycastHit2D hit = Physics2D.Raycast (ray, Vector2.zero);
 			if (hit) {
-				if (hit.transform.tag == "sorting_orange") {
+				if (hit.transform.tag == "unsort") {
 					//					Debug.Log ("hi Ray");
 					if (isOnMoving) {
 						return;
@@ -171,7 +177,7 @@ public class swapObject : MonoBehaviour
 							firstTempObj = null;
 							secondTempObj = null;
 							StartCoroutine (IEDelay (0.5f));
-							theHeart.LosingHeart ();
+							gameController.theHeart.LosingHeart ();
 
 						}
 					}
@@ -251,6 +257,9 @@ public class swapObject : MonoBehaviour
 
 
 		if (firstObj.transform.position == sTarget && secondObj.transform.position == fTarget) {
+			firstObj.tag = "sorted";
+			_curSortedValue++;
+			increaseScore ();
 //			Debug.Log ("moveDown Success!");
 			moveDown = true;
 		}

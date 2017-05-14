@@ -16,7 +16,6 @@ public class TreeController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		
 
 		if (isMoving) {
 			if (firstNode != null && secondNode != null) {
@@ -39,17 +38,19 @@ public class TreeController : MonoBehaviour
 			if (hit) {
 				if (!firstNode) {
 					firstNode = hit.transform;
+					setNodeParticle (firstNode);
 					if (firstNode.transform.tag == "Node") {
 						Fnode = firstNode.transform.position;
 					} else {
-						firstNode = null;
+						setNodeNull(firstNode);
 					}
 				} else if (firstNode != null) {
 					secondNode = hit.transform;
+					setNodeParticle (secondNode);
 					Snode = secondNode.transform.position;
 					if (secondNode == firstNode) {
-						firstNode = null;
-						secondNode = null;
+						setNodeNull(firstNode);
+						setNodeNull(secondNode);
 					} else {
 						//ถ้ากดครั้งที่สองเป็นชนิดโหนดคำตอบ ให้เลื่อนสลับกัน
 						if (secondNode.transform.tag == "Node") {
@@ -60,7 +61,7 @@ public class TreeController : MonoBehaviour
 							isMoving = true;
 							isMoveToanswer = true;
 						} else {
-							secondNode = null;
+							setNodeNull(secondNode);
 						}
 					}
 				}
@@ -83,8 +84,8 @@ public class TreeController : MonoBehaviour
 			isObjMove = false;
 			isMoving = false;
 
-			firstNode = null;
-			secondNode = null;
+			setNodeNull(firstNode);
+			setNodeNull(secondNode);
 		}
 	}
 
@@ -102,9 +103,25 @@ public class TreeController : MonoBehaviour
 			isMoveToanswer = false;
 			isMoving = false;
 
+			setNodeNull(firstNode);
+			setNodeNull(secondNode);
+		}
+	}
+
+	void setNodeParticle(Transform a){
+		if(a.GetComponent <Node>() != null)
+		a.GetComponent <Node>().toggleParticle ();
+	}
+		
+	void setNodeNull(Transform a){
+		if(a==firstNode){
+//			print ("if");
+			setNodeParticle (a);
 			firstNode = null;
+		}else{
+//			print ("else");
+			setNodeParticle (a);
 			secondNode = null;
 		}
 	}
-		
 }

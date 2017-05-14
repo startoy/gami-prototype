@@ -27,7 +27,7 @@ public class bubble_controller : MonoBehaviour
 		if (curInt >= maxCur) {
 			if (maxCur < 0) {
 				thisUI.isGameUIOver = true;
-				Debug.Log ("END");
+//				Debug.Log ("END");
 				oranges [0].transform.tag = "sorted";
 				oranges [1].transform.tag = "sorted";
 				return;
@@ -52,7 +52,7 @@ public class bubble_controller : MonoBehaviour
 		bool locke = false, locke2 = false;
 		locke = clickDetech (); //ตรวจสอบการคลิก ถ้าคลิกตัวซ้ายจริงๆ TRUE
 		locke2 = clickDetech2 ();
-		Debug.Log ("curConsider f=" + oranges [curInt].GetComponent <orangeValue> ().value + " s=" + oranges [curInt + 1].GetComponent <orangeValue> ().value);
+//		Debug.Log ("curConsider f=" + oranges [curInt].GetComponent <orangeValue> ().value + " s=" + oranges [curInt + 1].GetComponent <orangeValue> ().value);
 		oranges [curInt].transform.tag = "onsort";
 		oranges [curInt + 1].transform.tag = "onsort"; //เปลี่ยนให้แท็กสองอันเป็นกำลังพิจารณา
 		if (locke) {
@@ -62,7 +62,7 @@ public class bubble_controller : MonoBehaviour
 				//เข้ามาในนี้แสดงว่า จะจัดเรียง !!
 				oranges [curInt].transform.tag = "unsort";
 				oranges [curInt + 1].transform.tag = "unsort"; //เปลี่ยนแท็คกลับคืน จะได้ไม่สับสนกับถาดอื่น
-				Debug.Log ("swaping");
+//				Debug.Log ("swaping");
 				//
 				//  สลับที่ซ้าย ขวา     curInt จะเลื่อนไปขวา // curInt+1 จะเลื่อนไปซ้าย 
 				//  
@@ -79,7 +79,7 @@ public class bubble_controller : MonoBehaviour
 				oranges [curInt].GetComponent <orangeValue> ().curPos = curOr;
 				oranges [curInt].GetComponent <orangeValue> ().ismoveToLeft = true;
 				// END do move
-				Debug.Log ("now New f=" + oranges [curInt].GetComponent <orangeValue> ().value + " s=" + oranges [curInt + 1].GetComponent <orangeValue> ().value);
+//				Debug.Log ("now New f=" + oranges [curInt].GetComponent <orangeValue> ().value + " s=" + oranges [curInt + 1].GetComponent <orangeValue> ().value);
 				curInt++;
 				locke = false;
 			} else {
@@ -112,7 +112,7 @@ public class bubble_controller : MonoBehaviour
 			if (hit) {
 				if (hit.transform.tag == "onsort" && hit.transform == oranges [curInt].transform) {
 					res = true;
-					Debug.Log ("is click LEFT");
+//					Debug.Log ("is click LEFT");
 				}
 			}
 		}
@@ -128,7 +128,7 @@ public class bubble_controller : MonoBehaviour
 			if (hit) {
 				if (hit.transform.tag == "onsort" && hit.transform == oranges [curInt + 1].transform) {
 					res = true;
-					Debug.Log ("is click RIGHT");
+//					Debug.Log ("is click RIGHT");
 				}
 			}
 		}
